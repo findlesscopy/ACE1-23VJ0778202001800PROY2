@@ -193,23 +193,12 @@ cargar_nivel_secuencial:
 		int 21
 		jc inicio
 		mov [handle_nivel], AX
+		mov DI, offset mapa
+		mov CX,  3e8
+		mov AL,  00
+		call memset
 		jmp ciclo_lineas
 
-		mov AL, 00
-		mov DX, offset nivel_1
-		mov AH, 3d
-		int 21
-		jc inicio
-		mov [handle_nivel], AX
-		jmp ciclo_lineas
-
-		mov AL, 00
-		mov DX, offset nivel_2
-		mov AH, 3d
-		int 21
-		jc inicio
-		mov [handle_nivel], AX
-		jmp ciclo_lineas
 		;;
 
 cargar_un_nivel:
@@ -277,6 +266,9 @@ cargar_un_nivel_x:
 		int 21
 		jc inicio
 		mov [handle_nivel], AX
+		mov DI, offset mapa
+		mov CX,  3e8
+		mov AL,  00
 		call memset
 		jmp ciclo_lineas
 		;;
@@ -982,128 +974,6 @@ continuar_v:
 		inc AL
 		jmp ciclo_v
 fin_pintar_mapa:
-		ret
-
-
-;; mapa_quemado - mapa de prueba
-mapa_quemado:
-		mov DL, SUELO
-		mov AH, 2
-		mov AL, 2
-		call colocar_en_mapa
-		mov DL, SUELO
-		mov AH, 3
-		mov AL, 2
-		call colocar_en_mapa
-		mov DL, SUELO
-		mov AH, 4
-		mov AL, 2
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 2
-		mov AL, 3
-		call colocar_en_mapa
-		mov DL, SUELO
-		mov AH, 3
-		mov AL, 3
-		call colocar_en_mapa
-		mov DL, SUELO
-		mov AH, 4
-		mov AL, 3
-		call colocar_en_mapa
-		mov DL, SUELO
-		mov AH, 2
-		mov AL, 4
-		call colocar_en_mapa
-		mov DL, SUELO
-		mov AH, 3
-		mov AL, 4
-		call colocar_en_mapa
-		mov DL, SUELO
-		mov AH, 4
-		mov AL, 4
-		call colocar_en_mapa
-		;;
-		mov DL, JUGADOR
-		mov AH, [xJugador]
-		mov AL, [yJugador]
-		call colocar_en_mapa
-		;;
-		mov DL, CAJA
-		mov AH, 2
-		mov AL, 3
-		call colocar_en_mapa
-		;;
-		mov DL, OBJETIVO
-		mov AH, 4
-		mov AL, 2
-		call colocar_en_mapa
-		;;
-		mov DL, PARED
-		mov AH, 1
-		mov AL, 1
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 2
-		mov AL, 1
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 3
-		mov AL, 1
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 4
-		mov AL, 1
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 5
-		mov AL, 1
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 1
-		mov AL, 2
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 5
-		mov AL, 2
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 1
-		mov AL, 3
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 5
-		mov AL, 3
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 1
-		mov AL, 4
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 5
-		mov AL, 4
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 1
-		mov AL, 5
-		call colocar_en_mapa
-
-		mov DL, PARED
-		mov AH, 2
-		mov AL, 5
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 3
-		mov AL, 5
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 4
-		mov AL, 5
-		call colocar_en_mapa
-		mov DL, PARED
-		mov AH, 5
-		mov AL, 5
-		call colocar_en_mapa
 		ret
 
 ;; menu_configuracion - menu de configuracion
