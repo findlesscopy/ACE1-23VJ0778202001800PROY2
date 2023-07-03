@@ -150,13 +150,14 @@ buffer_entrada db  20,00
 
 .CODE
 .STARTUP
-inicio:
+muestra_pantalla_inicio:
 		;; MODO VIDEO ;;
 		mov AH, 00
 		mov AL, 13
 		int 10
 
-        ;call pantalla_inicio
+        call pantalla_inicio
+inicio:
 		;;;;;;;;;;;;;;;;
 		call menu_principal
 		mov AL, [opcion]
@@ -670,10 +671,6 @@ pantalla_inicio:
         mov AH, 09
         int 21
         mov DX, offset nueva_lin
-        mov AH, 09
-        int 21
-
-        mov DX, offset mensaje_enter
         mov AH, 09
         int 21
 
